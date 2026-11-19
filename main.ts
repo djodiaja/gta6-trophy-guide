@@ -5,8 +5,10 @@
 // screenshots, the first load's files and bytes, and your source), with the vendored make.fun library. Leave
 // vendor/makefun-frontend.ts as it is: the scorer requires dossier.json to be byte for byte what its own copy writes.
 //
-// Leonida Trophy Log: offline guide and tracker for the 55 GTA VI PS5 trophies. This file hands it in and refuses to
-// build if app/data/trophies.json does not hold all 55 trophies (see the check below).
+// This entry is the Leonida Trophy Log, an offline companion for GTA VI on PS5: a checklist, a roadmap to the platinum
+// and a per-trophy guide, all in app/ and all driven by app/data/trophies.json. main.ts is the packaging step. It
+// validates that data (validateTrophies below), copies app/ and screenshots/ into the output directory, and writes
+// dossier.json through the vendored make.fun library.
 //
 // Only the plumbing, not a winner: a plain checklist of the 55 trophies with a one-line hint each. Write a real guide
 // for every trophy in your own words, a roadmap to the platinum, filters and a spoiler setting in app/, put 3 or 4 PNG
@@ -17,17 +19,32 @@
 // Outside the grader's container, MAKEFUN_OUTPUT_DIR stands in for /output:
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { readFileSync } from 'node:fs';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
+const isBlank = (v: unknown) => typeof v !== 'string' || v.trim() === '';
+
+// Refuses to build unless the data holds exactly 55 trophies, each with a name, a guide and at least one source.
+function validateTrophies(data: any): void {
+  const trophies = data?.trophies;
+  if (!Array.isArray(trophies) || trophies.length !== 55) {
+    throw new Error(`app/data/trophies.json must hold exactly 55 trophies, found ${Array.isArray(trophies) ? trophies.length : 'none'}`);
+  }
+  trophies.forEach((t: any, i: number) => {
+    const label = `trophy #${i + 1}${t?.name ? ` (${t.name})` : ''}`;
+    if (isBlank(t?.name)) throw new Error(`${label} has a blank name`);
+    if (isBlank(t?.guide)) throw new Error(`${label} has a blank guide`);
+    if (!Array.isArray(t?.sources) || t.sources.length < 1) throw new Error(`${label} needs at least one source`);
+  });
+}
+
 const data = JSON.parse(readFileSync(join(here, 'app', 'data', 'trophies.json'), 'utf8'));
-if (data.trophies?.length !== 55) throw new Error(`app/data/trophies.json must hold 55 trophies, found ${data.trophies?.length}`);
+validateTrophies(data);
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });

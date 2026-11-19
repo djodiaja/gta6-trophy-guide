@@ -6,6 +6,17 @@
 
 Leonida Trophy Log is an offline guide and tracker for all 55 GTA VI PS5 trophies: a filterable checklist with saved progress, export/import, a spoiler setting, a roadmap to the platinum, a missables view, and a cited guide for every trophy.
 
+## What's inside
+
+- **Checklist**: all 55 trophies, each ticked off as you go, with progress saved in the browser.
+- **Filters**: narrow the list by grade (platinum, gold, silver, bronze) and by to-do or earned status.
+- **Spoiler setting**: hide or reveal trophy details so you only see what you want.
+- **Roadmap**: a stage-by-stage route to the platinum.
+- **Missables view**: every trophy that can be locked out, with the reason.
+- **Trophy guides**: a written guide for each trophy, with its sources cited.
+- **Export / import**: back up your progress as a file and restore it later.
+- **Offline**: plain static files with no build step and no network requests.
+
 ## Run it
 
 ```sh
