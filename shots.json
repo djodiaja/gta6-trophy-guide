@@ -1,5 +1,6 @@
 [
-  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "scroll": 1400, "viewport": { "width": 1280, "height": 800 } }
+  { "file": "1-checklist-guide.jpg", "path": "/?demo=1&earned=2,3,8,15,17,19,21,28,44,53&sel=17&kind=activity", "description": "Checklist filtered to Activities with The Shootist's guide, missable note and cited sources open; per-grade progress bars on top", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "2-roadmap.jpg", "path": "/?demo=1&view=roadmap&earned=2,3,4,5,8,9,10,15,17,19,21,28,44,53", "description": "Roadmap to the platinum: nine stages with counts, grades and progress", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "3-missables.jpg", "path": "/?demo=1&view=missables&earned=2,3,4,5", "description": "Missables view flagging every missable trophy with the reason", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "4-spoilers.jpg", "path": "/?demo=1&spoilers=1&earned=2,3,4,8,9,19,21,28&sel=1&kind=story", "description": "Spoiler setting on: unearned story trophies are hidden, earned ones are revealed", "viewport": { "width": 1280, "height": 800 } }
 ]

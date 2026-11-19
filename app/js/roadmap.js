@@ -18,10 +18,10 @@ function stageRow(t, state, onSelect) {
   const li = el('li', 'sr' + (state.earned.has(t.id) ? ' done' : ''));
   li.append(el('span', 'tick', state.earned.has(t.id) ? '✓' : '○'));
   li.append(el('span', 'srname' + (hid ? ' redacted' : ''), hid ? 'Hidden story trophy' : t.name));
-  li.append(el('span', 'srdesc' + (hid ? ' redacted' : ''), hid ? '' : t.description));
   if (t.count) li.append(el('span', 'count', '× ' + t.count.toLocaleString('en-US')));
   li.append(gradeBadge(t.grade));
   if (t.missable) li.append(el('span', 'flag', 'missable'));
+  li.append(el('span', 'srdesc' + (hid ? ' redacted' : ''), hid ? '' : t.description));
   li.onclick = () => onSelect(t.id);
   return li;
 }

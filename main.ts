@@ -5,6 +5,9 @@
 // screenshots, the first load's files and bytes, and your source), with the vendored make.fun library. Leave
 // vendor/makefun-frontend.ts as it is: the scorer requires dossier.json to be byte for byte what its own copy writes.
 //
+// Leonida Trophy Log: offline guide and tracker for the 55 GTA VI PS5 trophies. This file hands it in and refuses to
+// build if app/data/trophies.json does not hold all 55 trophies (see the check below).
+//
 // Only the plumbing, not a winner: a plain checklist of the 55 trophies with a one-line hint each. Write a real guide
 // for every trophy in your own words, a roadmap to the platinum, filters and a spoiler setting in app/, put 3 or 4 PNG
 // or JPEG screenshots of it in screenshots/ (the first by name is the cover; shots.json says which views this
@@ -17,10 +20,14 @@
 import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'node:fs';
 import { buildDossier } from './vendor/makefun-frontend.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+
+const data = JSON.parse(readFileSync(join(here, 'app', 'data', 'trophies.json'), 'utf8'));
+if (data.trophies?.length !== 55) throw new Error(`app/data/trophies.json must hold 55 trophies, found ${data.trophies?.length}`);
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
