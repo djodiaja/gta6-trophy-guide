@@ -1,5 +1,6 @@
 [
-  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "scroll": 1400, "viewport": { "width": 1280, "height": 800 } }
+  { "file": "1-checklist-guide.jpg", "path": "/", "note": "Checklist with filters, grade progress bars and The Shootist's guide and sources open", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "2-roadmap.jpg", "path": "/", "note": "Roadmap to platinum, stage by stage, with Sneakthief's guide open", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "3-missables.jpg", "path": "/", "note": "Missables view with the reason each trophy is flagged", "viewport": { "width": 1280, "height": 800 } },
+  { "file": "4-spoilers-story.jpg", "path": "/", "note": "Spoiler setting on, story filter: unearned story trophies masked", "viewport": { "width": 1280, "height": 800 } }
 ]
